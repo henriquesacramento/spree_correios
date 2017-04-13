@@ -11,7 +11,7 @@ Module Spree
     attr_reader :delivery_time
     
     def compute_package(object)
-      return unless object.present? and object.line_items.present?
+      return unless object.present? and object.contents.present?
       order = object.is_a?(Spree::Order) ? object : object.order
 
       itens = []
