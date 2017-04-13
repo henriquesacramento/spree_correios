@@ -47,7 +47,6 @@ Module Spree
       return 0.0 if webservice.erro?
       @delivery_time = webservice.prazo_entrega
       webservice.valor
-      rescue 0.0
     end
     
     def available?(order)
