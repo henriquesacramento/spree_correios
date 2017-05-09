@@ -11,7 +11,7 @@ module Spree
     attr_reader :delivery_time
 
     def compute_package(object)
-      return unless object.present? and object.contents.present?
+      return unless object.present? && object.contents.present?
       order = object.is_a?(Spree::Order) ? object : object.order
 
       itens = []
@@ -23,13 +23,14 @@ module Spree
 
       package = ::Correios::Frete::Pacote.new
       itens.map do |item|
-      order.line_items.map do |item|
-        weight = item.product.weight.to_f
-        depth  = item.product.depth.to_f
-        width  = item.product.width.to_f
-        height = item.product.height.to_f
-        package_item = ::Correios::Frete::PacoteItem.new(peso: weight, comprimento: depth, largura: width, altura: height)
-        package.add_item(package_item)
+        order.line_items.map do |item|
+          weight = item.product.weight.to_f
+          depth  = item.product.depth.to_f
+          width  = item.product.width.to_f
+          height = item.product.height.to_f
+          package_item = ::Correios::Frete::PacoteItem.new(peso: weight, comprimento: depth, largura: width, altura: height)
+          package.add_item(package_item)
+        end
       end
 
       calculator = ::Correios::Frete::Calculador.new do |c|
@@ -57,5 +58,4 @@ module Spree
       preferred_token.present? && preferred_password.present?
     end
   end
-
 end
