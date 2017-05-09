@@ -1,5 +1,7 @@
 module Spree
   class Calculator::CorreiosBaseCalculator < ShippingCalculator
+    include  ActiveModel::MassAssignmentSecurity
+
     preference :zipcode, :string
     preference :token, :string
     preference :password, :string
