@@ -3,7 +3,7 @@ module Spree
     def self.description
       "SEDEX"
     end
-    
+
     def shipping_method
       if preferred_token.present? && preferred_password.present?
         :sedex_com_contrato_1
@@ -11,12 +11,12 @@ module Spree
         :sedex
       end
     end
-    
+
     def shipping_code
       if has_contract?
         40096
       else
-        40010
+        04014
       end
     end
   end
